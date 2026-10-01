@@ -28,9 +28,11 @@
 #include <valgrind/cachegrind.h>
 
 #include <cstdint>
+#include <cstdio>
 #include <iostream>
 #include <memory>
 #include <optional>
+#include <print>
 
 struct CompilerBinary
 {
@@ -95,7 +97,7 @@ public:
             monad::vm::compiler::native::compile_basic_blocks<traits>(
                 rt_, ir, config_);
         if (!nc->entrypoint()) {
-            std::cerr << "Compilation failed.\n";
+            std::println(stderr, "Compilation failed.");
             abort();
         }
 

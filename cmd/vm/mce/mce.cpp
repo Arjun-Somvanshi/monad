@@ -43,12 +43,14 @@
 #include <algorithm>
 #include <cctype>
 #include <cstdint>
+#include <cstdio>
 #include <cstdlib>
 #include <format>
 #include <ios>
 #include <iostream>
 #include <optional>
 #include <ostream>
+#include <print>
 #include <string>
 #include <vector>
 
@@ -207,7 +209,7 @@ int mce_main(arguments const &args)
         }
     }();
     if (!ir) {
-        std::cerr << "Parsing failed.\n";
+        std::println(stderr, "Parsing failed.");
         abort();
     }
 
@@ -288,7 +290,7 @@ int main(int argc, char **argv)
         return mce_main<EvmTraits<MONAD_ETH_LATEST_STABLE_REVISION>>(args);
     }
     else {
-        std::cerr << "unsupported revision '" << args.revision << "'\n";
+        std::println(stderr, "unsupported revision '{}'", args.revision);
         return 1;
     }
 }
